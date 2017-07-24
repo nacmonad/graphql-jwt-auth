@@ -1,10 +1,6 @@
 export default `
   scalar Date
 
-  type Status {
-    message: String!
-  }
-
   type Auth {
     token: String!
     user: Me!
@@ -34,12 +30,6 @@ export default `
     workers: [Worker]
   }
 
-  type Tweet {
-    _id: ID!
-    text: String!
-    createdAt: Date!
-    updatedAt: Date!
-  }
   type Worker {
     _id: ID!
     userId: ID!
@@ -72,22 +62,29 @@ export default `
   longitude: Float,
   speed: Float
 }
+type Benchmark {
+  _id:ID!
+  makeModel:String
+  scores: [Score]
+}
+type Score {
+  _id:ID!
+  deviceId:ID!
+  type:String!
+  score:Float!
+}
   type RootQuery {
-    getTweet(_id: ID!): Tweet
-    getTweets: [Tweet]
     me: Me
     getUser: User
   }
 
   type RootMutation {
+    signup(email: String!, fullName: String!, password: String!, avatar: String, username: String): Auth
+    login(email: String!, password: String!): Auth
     createWorker: Worker
     createDevice(workerId:ID!): Device
     createGeolocation(userId:ID!, deviceId:ID!): Geolocation
-    createTweet(text: String!): Tweet
-    updateTweet(_id: ID!, text: String): Tweet
-    deleteTweet(_id: ID!): Status
-    signup(email: String!, fullName: String!, password: String!, avatar: String, username: String): Auth
-    login(email: String!, password: String!): Auth
+    createBenchmark(deviceId:ID!) : Benchmark
   }
 
   schema {

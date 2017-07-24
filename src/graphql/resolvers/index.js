@@ -5,6 +5,7 @@ import UserResolvers from './user-resolvers';
 import WorkerResolvers from './worker-resolvers';
 import DeviceResolvers from './device-resolvers';
 import GeolocationResolvers from './geolocation-resolvers';
+import BenchmarkResolvers from './benchmark-resolvers';
 
 import Workers from '../../models/Workers';
 import Devices from '../../models/Device';
@@ -45,6 +46,7 @@ export default {
     me: UserResolvers.me
   },
   RootMutation: {
+    createBenchmark: BenchmarkResolvers.createBenchmark,
     createGeolocation: GeolocationResolvers.createGeolocation,
     createDevice: DeviceResolvers.createDevice,
     createWorker: WorkerResolvers.createWorker,
