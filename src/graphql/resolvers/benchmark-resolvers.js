@@ -12,7 +12,7 @@ export default {
           $push: {"scores":{
             deviceId:args.deviceId,
             type:"fake",
-            score: Math.floor(100*Math.random())
+            score: args.score || Math.floor(100*Math.random())
           }}
         },
         {upsert:true});

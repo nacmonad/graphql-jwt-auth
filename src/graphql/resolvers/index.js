@@ -1,6 +1,5 @@
 import GraphQLDate from 'graphql-date';
 
-import TweetResolvers from './tweet-resolvers';
 import UserResolvers from './user-resolvers';
 import WorkerResolvers from './worker-resolvers';
 import DeviceResolvers from './device-resolvers';
@@ -10,6 +9,7 @@ import BenchmarkResolvers from './benchmark-resolvers';
 import Workers from '../../models/Workers';
 import Devices from '../../models/Device';
 import Geolocations from '../../models/Geolocation';
+import Benchmarks from '../../models/Benchmark';
 
 export default {
   Date: GraphQLDate,
@@ -38,11 +38,16 @@ export default {
       } catch (e) {
         throw e
       }
+    },
+    async benchmarks(root, args, context) {
+      try {
+          return await Benchmarks.find({"scores.deviceId":{$eq:root._id}})
+      } catch (e) {
+        throw e
+      }
     }
   },
   RootQuery: {
-    getTweet: TweetResolvers.getTweet,
-    getTweets: TweetResolvers.getTweets,
     me: UserResolvers.me
   },
   RootMutation: {
@@ -50,9 +55,6 @@ export default {
     createGeolocation: GeolocationResolvers.createGeolocation,
     createDevice: DeviceResolvers.createDevice,
     createWorker: WorkerResolvers.createWorker,
-    createTweet: TweetResolvers.createTweet,
-    updateTweet: TweetResolvers.updateTweet,
-    deleteTweet: TweetResolvers.deleteTweet,
     signup: UserResolvers.signup,
     login: UserResolvers.login
   }

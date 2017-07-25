@@ -44,6 +44,7 @@ export default `
     createdAt: Date!
     updatedAt: Date!
     geolocations: [Geolocation]
+    benchmarks: [Benchmark]
   }
   type Geolocation {
     _id:ID!
