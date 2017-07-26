@@ -7,8 +7,7 @@ import constants from '../config/constants';
 
 const UserSchema = new Schema({
   username: {
-    type: String,
-    unique: true
+    type: String
   },
   firstName: String,
   lastName: String,

@@ -48,7 +48,9 @@ export default {
     }
   },
   RootQuery: {
-    me: UserResolvers.me
+    me: UserResolvers.me,
+    getWorker: WorkerResolvers.getWorker,
+    getWorkers: WorkerResolvers.getWorkers
   },
   RootMutation: {
     createBenchmark: BenchmarkResolvers.createBenchmark,

@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 const geolocations = new Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref:'users', required: true},
-  deviceId: { type: mongoose.Schema.Types.ObjectId, ref:'devices', required: true },
+  deviceId: { type: String, ref:'devices', required: true },
   coords: {
         accuracy:{type: Number },
         altitude:{type: Number },

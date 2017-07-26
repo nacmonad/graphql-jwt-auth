@@ -56,6 +56,14 @@ export default `
     updatedAt: Date!
   }
   type Coordinate {
+    accuracy: Float,
+    altitude: Float,
+    heading: Float,
+    latitude: Float,
+    longitude: Float,
+    speed: Float
+}
+input CoordinateInput {
   accuracy: Float,
   altitude: Float,
   heading: Float,
@@ -63,6 +71,7 @@ export default `
   longitude: Float,
   speed: Float
 }
+
 type Benchmark {
   _id:ID!
   makeModel:String
@@ -77,6 +86,9 @@ type Score {
   type RootQuery {
     me: Me
     getUser: User
+    getWorkers: [Worker]
+    getWorker(_id:ID!): Worker
+
   }
 
   type RootMutation {
@@ -84,7 +96,7 @@ type Score {
     login(email: String!, password: String!): Auth
     createWorker: Worker
     createDevice(workerId:ID!): Device
-    createGeolocation(userId:ID!, deviceId:ID!): Geolocation
+    createGeolocation(userId:ID!, deviceId:ID!, coords: CoordinateInput, timestamp:String): Geolocation
     createBenchmark(deviceId:ID!) : Benchmark
   }
 
